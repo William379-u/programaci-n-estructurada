@@ -1,0 +1,21 @@
+{
+  "name": "import",
+  "version": "1.0.0",
+  "main": "ejercios1.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/William379-u/programaci-n-estructurada.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/William379-u/programaci-n-estructurada/issues"
+  },
+  "homepage": "https://github.com/William379-u/programaci-n-estructurada#readme",
+  "description": ""
+}
