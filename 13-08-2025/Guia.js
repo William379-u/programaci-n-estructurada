@@ -21,10 +21,10 @@ rl.question('Ingrese su correo electrónico: ', (correo) => {
     console.log(`Correo en minúsculas: ${correoMinusculas}`);   
     console.log(`El correo termina con '@gmail.com': ${terminaConGmail}`);
 
-// ejercicio 3 - substring
-rl.question('Ingrese su codigo de estudiante ( ej: U2024-0468): ', (codigo) => {
-const subCadena = codigo.substring(6, 10);
-console.log(`La subcadena de los ultimos 4 caracteres es: "${subCadena}"`);
+// ejercicio 3 - slice
+rl.question('Ingrese su codigo de estudiante: ', (codigo) => {
+const subCadena = codigo.slice(-4);
+console.log(`Los últimos 4 caracteres del código son: ${subCadena}`);
 
 // ejercio 4 - ndexOf
 rl.question('Ingrese el mensaje que contenga el error": ', (error) => {
