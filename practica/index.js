@@ -1,38 +1,61 @@
-import { stdin, stdout } from 'node:process';
-import readline from 'readline'
-
-const rd = readline.createInterface({
-    input: stdin,
-    output: stdout,
+const rl = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
 
-function esPalindromo(texto) {
-    const limpio = texto.toLowerCase().replace(/[^a-z0-9]/gi, '');
-    return limpio === limpio.split('').reverse().join('');
+// 1. Palíndromo
+function esPalindromo(frase) {
+    let limpia = frase.toLowerCase().replace(/[^a-z0-9]/gi, '');
+    let invertida = limpia.split('').reverse().join('');
+    return limpia === invertida;
 }
 
+// 2. Contador de vocales
 function contarVocales(cadena) {
-    const coincidencias = cadena.match(/[aeiou]/gi);
+    let coincidencias = cadena.match(/[aeiouáéíóú]/gi);
     return coincidencias ? coincidencias.length : 0;
 }
 
+// 3. Anagrama simple
 function sonAnagramas(palabraA, palabraB) {
-    const normalizar = str => str.toLowerCase().replace(/[^a-z0-9]/gi, '').split('').sort().join('');
-    return normalizar(palabraA) === normalizar(palabraB);
+    let normalizadaA = palabraA.toLowerCase().replace(/[^a-z0-9]/gi, '').split('').sort().join('');
+    let normalizadaB = palabraB.toLowerCase().replace(/[^a-z0-9]/gi, '').split('').sort().join('');
+    return normalizadaA === normalizadaB;
 }
 
+// 4. Palabra más frecuente
 function palabraMasFrecuente(frase) {
-    const palabras = frase.toLowerCase().replace(/[^a-z0-9\s]/gi, '').split(/\s+/);
-    const conteo = {};
-    for (let palabra of palabras) conteo[palabra] = (conteo[palabra] || 0) + 1;
-    return Object.keys(conteo).reduce((a, b) => conteo[a] >= conteo[b] ? a : b);
+    let palabras = frase.toLowerCase().replace(/[^a-z0-9áéíóúñ\s]/gi, '').split(/\s+/);
+    let conteo = {};
+    let maxPalabra = '';
+    let maxConteo = 0;
+
+    for (let palabra of palabras) {
+        conteo[palabra] = (conteo[palabra] || 0) + 1;
+        if (conteo[palabra] > maxConteo) {
+            maxConteo = conteo[palabra];
+            maxPalabra = palabra;
+        }
+    }
+    return maxPalabra;
 }
 
-rd.question('Escribe algo: ', (respuesta) => {
-    console.log(`Escribiste: ${respuesta}`);
-    console.log(`¿Es un palíndromo? ${esPalindromo(respuesta)}`);
-    console.log(`Número de vocales: ${contarVocales(respuesta)}`);
-    console.log(`¿Son anagramas? ${sonAnagramas(respuesta, 'otraPalabra')}`);
-    console.log(`Palabra más frecuente: ${palabraMasFrecuente(respuesta)}`);
-    rd.close();
+// Ejemplo con rl
+rl.question("Ingrese una frase para verificar si es palíndromo: ", (frase) => {
+    console.log("¿Es palíndromo?:", esPalindromo(frase));
+
+    rl.question("Ingrese una cadena para contar vocales: ", (texto) => {
+        console.log("Cantidad de vocales:", contarVocales(texto));
+
+        rl.question("Ingrese la primera palabra para verificar anagrama: ", (pA) => {
+            rl.question("Ingrese la segunda palabra: ", (pB) => {
+                console.log("¿Son anagramas?:", sonAnagramas(pA, pB));
+
+                rl.question("Ingrese una frase para encontrar la palabra más frecuente: ", (frec) => {
+                    console.log("Palabra más frecuente:", palabraMasFrecuente(frec));
+                    rl.close();
+                });
+            });
+        });
+    });
 });

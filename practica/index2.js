@@ -22,5 +22,12 @@ rl.question('Escriba una operación matematica ejemplo: 10 + 20, 50 - 30, 20 * 2
     } catch (error) {
         console.log('Error: ' + error.message);
     }
+
+    rl.question("Ingrese un numero decimal : ej 7.85 : ", (numeroDecimal) => {
+        let numeroRedondeado = Math.round(parseFloat(numeroDecimal));
+        console.log(`El número decimal ingresado es: ${numeroDecimal}`);
+        console.log(`El número redondeado es: ${numeroRedondeado}`);
     rl.close();
-});
+    });
+    });
+    
