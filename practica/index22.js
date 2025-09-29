@@ -31,3 +31,30 @@ miCuenta.depositar(250)
 miCuenta.retirar(110)
 console.log(`Tu saldo es: ${miCuenta.verSaldo()}`)
 
+let numeros = [2,4,6,7,9]
+function recorrerArray(arr, calback){
+    for(let item of arr){
+        calback(item)
+    }
+}
+recorrerArray(numeros, n => console.log(n * n))
+
+function procesarUsuario(nombre, calback){
+    console.log('procesando usuario, espere...')
+    calback(nombre)
+}
+
+procesarUsuario('Kevin', function(nombre){
+    console.log('Ya estas siendo procesado', nombre)
+})
+
+const sumar = (a,b) => a + b
+const saludo = () => "Hola mundo"
+console.log(sumar(40,55))
+console.log(saludo())
+
+const pares = [2,4,6,8]
+const exponente = pares.map(x => x * x)
+console.log("Array normal", pares)
+console.log("Elevado a si mismo", exponente)
+
