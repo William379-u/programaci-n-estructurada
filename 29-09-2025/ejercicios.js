@@ -75,3 +75,4 @@ rl.question( "Dime la temperatura de otro día más: " , ( respuesta3) => {
 });
 });
 });
+3
